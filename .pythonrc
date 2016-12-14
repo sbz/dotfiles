@@ -1,0 +1,41 @@
+#
+# Used with invocation: PYTHONSTARTUP=~/.pythonrc python
+#
+import atexit
+import os
+import readline
+import rlcompleter
+
+history_file = os.path.expanduser('~/.python_history')
+
+
+def enable_completion():
+    readline.set_completer(rlcompleter.Completer(globals()).complete)
+    if 'libedit' in readline.__doc__:
+        # from src/lib/libedit/readline.c
+        readline.parse_and_bind('bind ^I rl_complete')
+        readline.parse_and_bind('bind ^R em-inc-search-prev')
+    else:
+        readline.parse_and_bind('tab: complete')
+
+
+def enable_history():
+    if os.path.exists(history_file):
+        readline.read_history_file(history_file)
+
+
+def save_history():
+    readline.write_history_file(history_file)
+
+enable_completion()
+enable_history()
+
+atexit.register(save_history)
+
+# always imported
+import sys  # noqa
+
+# aliases
+from pprint import pprint as pp # noqa
+
+# vim: ai ts=4 sts=4 et sw=4 ft=python
