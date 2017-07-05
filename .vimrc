@@ -160,7 +160,7 @@ endif
 " wrap git commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" use <leader>L to toggle display of whitespaces
+" use \L to toggle display of whitespaces
 nmap <leader>L :set list!<CR>
 
 " GotoFile
@@ -172,10 +172,13 @@ map <silent><ESC>k :s/^/# <CR>
 " uncomment line
 map <silent><ESC>K :s/^#\s\+/<CR>
 
-noremap - :res<CR>:vertical res<CR>
+" maximize size on split
+noremap + :res<CR>:vertical res<CR>
+
+" equalize size on split
 noremap = <C-w>=
 
-" refactor block usign \rf
+" refactor block using \rf
 function! Refactor()
   let old = expand("<cword>")
   let new = input("New name to replace: ")
