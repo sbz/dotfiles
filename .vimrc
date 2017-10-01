@@ -8,15 +8,19 @@ colorscheme desert
 set nolist
 set listchars=tab:>-,trail:.,precedes:<,extends:>,eol:$
 
+" setup Vundle with command
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
+
 " requirement for using Vundle
 set nocompatible
 filetype off
 filetype plugin indent on
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " Vundle as plugin manager
-Plugin 'gmarik/vundle'       
+Plugin 'VundleVim/Vundle.vim'
 
 " Plugins installation using :PluginInstall
 Plugin 'Glench/Vim-Jinja2-Syntax'
