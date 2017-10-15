@@ -1,0 +1,5 @@
+URxvt.font: xft:monospace:size=9:antialias=true
+URxvt.internalBorder: False
+URxvt.scrollBar: False
+URxvt.background: black
+URxvt.foreground: white
