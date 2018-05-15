@@ -192,6 +192,13 @@ endfunction
 
 nmap <Leader>rf :call Refactor()<cr>
 
+" JSON pretty indent using \pf
+function! JSONPretty()
+    execute '%!python -mjson.tool'
+endfunction
+
+nmap <Leader>pf :call JSONPretty()<cr>
+
 " vim python is harmful
 
 if has('python')
