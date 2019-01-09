@@ -22,6 +22,7 @@
         up = !(git fetch upstream && git rebase upstream/develop)
         hide = update-index --assume-unchanged
         unhide = update-index --no-assume-unchanged
+        recbr = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 [core]
         excludesfile = ~sbz/.gitignore_global
         editor = /usr/local/bin/vim
