@@ -6,8 +6,8 @@
 
 ### Install or Update packages
 
-```brew bundle install --file=./Brewfile```
+```brew bundle install --file=.Brewfile```
 
 ### Create Brewfile of packages
 
-```brew bundle dump --file=./Brewfile```
+```brew bundle dump --file=.Brewfile```
