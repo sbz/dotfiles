@@ -4,6 +4,9 @@
 syn on
 colorscheme desert
 
+" enable utf-8
+set encoding=utf-8
+
 " configure trailing whitespaces visualization
 set nolist
 set listchars=tab:>-,trail:.,precedes:<,extends:>,eol:$
@@ -62,7 +65,7 @@ let g:pymode_lint_checker = ["pylint", "pyflakes","pep8"]
 let g:pymode_lint_write = 1
 
 " python 3.x ftw!
-"let g:pymode_python = 'python3'
+let g:pymode_python = 'python3'
 
 " enable virtualenv support
 let g:pymode_virtualenv = 1
@@ -98,21 +101,21 @@ set tags+=./tags
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline_symbols = {}
-"let g:airline_symbols.branch = '?~N~G'
-"let g:airline_symbols.readonly = '?~B?'
-"let g:airline_symbols.linenr = '?~B?'
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.branch = '?~N~G'
+let g:airline_symbols.readonly = '?~B?'
+let g:airline_symbols.linenr = '?~B?'
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 set laststatus=2
 
 " syntastic
@@ -124,6 +127,7 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " vim-go
+let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -199,27 +203,32 @@ endfunction
 
 nmap <Leader>pf :call JSONPretty()<cr>
 
-" vim python is harmful
+" vim python is powerful
+"
+" snippet to use vim python to generate python class definition in a vim buffer
+" when calling the function in command mode:
+" :python3 inherit(module="http.server", clazz="HTTPServer")
 
-if has('python')
-    python <<EOF
-def loutrage(module="paramiko", clazz="SFTPServerInterface"):
+if has('python3')
+    python3 <<EOF
+def inherit(module="paramiko", clazz="SFTPServerInterface"):
     import vim
-    p = __import__(module)
+    import importlib
+    p = importlib.import_module(module)
     i = getattr(p, clazz)
  
     buffer = vim.current.buffer
  
     buffer.append('class %s (%s.%s):' % ('MyClass', p.__name__, i.__name__))
     buffer.append('\tdef __init__(%s ):' % ", ".join(         
-        getattr(i, '__init__').im_func.func_code.co_varnames))
+        getattr(i, '__init__').__code__.co_varnames))
     buffer.append('\t\tpass')
     buffer.append('\n')
  
     for m in dir(i):                                           
-        if '__' not in m and hasattr(getattr(i, m), 'im_func'):
+        if '__' not in m and hasattr(getattr(i, m), '__code__'):
             buffer.append('\tdef %s(%s):' % (m, ", ".join(    
-                getattr(i, m).im_func.func_code.co_varnames)))
+                getattr(i, m).__code__.co_varnames)))
             buffer.append('\t\traise NotImplementedError()')
             buffer.append('\n')
 EOF
