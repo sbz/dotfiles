@@ -3,3 +3,5 @@ URxvt.internalBorder: False
 URxvt.scrollBar: False
 URxvt.background: black
 URxvt.foreground: white
+URxvt.transparent: true
+URxvt.shading:       10
