@@ -7,6 +7,13 @@ colorscheme desert
 " enable utf-8
 set encoding=utf-8
 
+" enable cursor line number
+set nu
+set cursorline
+
+hi CursorLine     ctermbg=0 ctermfg=7
+hi LineNr         ctermfg=DarkMagenta
+
 " configure trailing whitespaces visualization
 set nolist
 set listchars=tab:>-,trail:.,precedes:<,extends:>,eol:$
