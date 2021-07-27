@@ -1,0 +1,111 @@
+#
+# sbz's .muttrc
+#
+
+mailboxes =INBOX =Drafts =Sent
+
+set realname = "Real Name"
+set from = "nick@"
+
+## imap settings
+set imap_user = "username"
+set imap_pass = "password"
+set folder = "imaps://imap.gmail.com:993"
+set imap_check_subscribed="yes"
+
+bind index "^" imap-fetch-mail
+
+## smtp settings
+set smtp_url = "smtp://username@smtp.gmail.com:587"
+set smtp_pass = "password"
+set spoolfile = "+INBOX"
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file="~/.mutt/certificates"
+
+## index settings
+set pager_index_lines=4
+set pager_context=5				
+
+set date_format="%d %b %R %Y"
+set index_format="%4C %Z %D %-15.15L (%4l) %s"
+set pager_format="%4C %Z %[!%b %e at %I:%M %p] %.20n %s%* -- (%P)"
+
+set move = no
+set sort = 'threads'
+
+## charset settings
+set allow_8bit
+set charset=utf-8
+set send_charset=utf-8
+
+## global settings
+set editor="vim + -c 'set ft=mail tw=80' + -c  ':0/^$'"
+set signature = "~/.mutt/signature"
+set mail_check = 60
+
+# html view email with w3m
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# choose headers displayed
+unignore headers from to subject date cc
+
+## color settings
+color normal default default
+color hdrdefault cyan default
+color tilde default default
+color signature default default
+color tree red default
+
+color header red default "^(From|Subject|Date):"
+# commit log coloration
+color body magenta default "^(Author|Date|Modified|New Revision|Log):.*"
+# diff coloration
+color body yellow default "^\\+.*"
+color body cyan default "^\\-.*"
+# in-line reply mail quote (hack because quoted don't accept regexp)
+color body green default "^>(B|>?).*"
+
+## pgp settings
+source ~/.mutt/gpg.rc
+set pgp_autosign=yes
+set pgp_mime_signature_filename="signature.asc"
+set pgp_mime_signature_description="GPG key"
+
+## sidebar settings, default not visible
+set sidebar_width=40
+set sidebar_visible=no
+set sidebar_delim='|'
+
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+# color of folders with new mail
+color sidebar_new yellow default
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message function to "B"
+bind index B bounce-message
+
+## mailcap settings
+set mailcap_path="~/.mutt/mailcap"
+bind attach <return> view-mailcap
+
+## macros settings
+# https://gitlab.com/muttmua/mutt/-/wikis/MacroSamples
+
+macro index \ei  "<change-folder>imaps://imap.gmail.com:993<enter>" "Go to inbox"
+macro index \ef  "<change-folder>=freebsd/developers<enter>" "Go to developers"
