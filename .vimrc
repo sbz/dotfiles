@@ -51,6 +51,7 @@ Plugin 'tweekmonster/braceless.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/forth.vim'
+Plugin 'preservim/tagbar'
 
 call vundle#end()
 
