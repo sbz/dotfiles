@@ -4,6 +4,9 @@
 syn on
 colorscheme desert
 
+" enable relative line number
+set relativenumber
+
 " enable utf-8
 set encoding=utf-8
 
@@ -52,6 +55,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/forth.vim'
 Plugin 'preservim/tagbar'
+Plugin 'rodjek/vim-puppet'
+Plugin 'vim-scripts/grep.vim'
+Plugin 'davidhalter/jedi-vim'
+" colors themes
+Plugin 'endel/vim-github-colorscheme' " github
+Plugin 'doums/darcula' " darcula
 
 call vundle#end()
 
@@ -210,6 +219,9 @@ function! JSONPretty()
 endfunction
 
 nmap <Leader>pf :call JSONPretty()<cr>
+
+" vim grep
+let Grep_Default_Options = '-r -i'
 
 " vim python is powerful
 "
