@@ -65,6 +65,16 @@ Plugin 'mg979/vim-visual-multi' " mutli cursor
 " colors themes
 Plugin 'endel/vim-github-colorscheme' " github
 Plugin 'doums/darcula' " darcula
+Plugin 'stephpy/vim-yaml' " yaml
+Plugin 'Yggdroot/indentLine' " indent line
+"Plugin 'pedrohdz/vim-yaml-folds' " yaml-folds
+Plugin 'dense-analysis/ale' " ale
+Plugin 'jjo/vim-cue' "cue
+Plugin 'madox2/vim-ai' "vim-ai
+Plugin 'junegunn/goyo.vim' "distraction free
+
+" indentline
+let g:indentLine_char = '¦'
 
 call vundle#end()
 
@@ -257,5 +267,25 @@ def inherit(module="paramiko", clazz="SFTPServerInterface"):
             buffer.append('\n')
 EOF
 endif
+
+" yaml
+augroup filetype_yaml
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+    autocmd FileType yaml |
+        setlocal shiftwidth=2 |
+        setlocal softtabstop=2 |
+        setlocal tabstop=2
+augroup END
+
+" vim-ai
+let g:vim_ai_chat = {
+\  "options": {
+\    "endpoint_url": "https://api.scaleway.ai/v1/chat/completions",
+\    "model": "qwen2.5-coder-32b-instruct",
+\    "enable_auth": 1,
+\  },
+\}
+let g:vim_ai_token_file_path = '~/.config/scwai.token'
 
 " vim: tw=80 ts=4 ft=vim
