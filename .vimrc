@@ -58,6 +58,10 @@ Plugin 'preservim/tagbar'
 Plugin 'rodjek/vim-puppet'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'SpaceVim/nvim-yarp'
+Plugin 'raghur/vim-ghost' " ghost
+Plugin 'mg979/vim-visual-multi' " mutli cursor
 " colors themes
 Plugin 'endel/vim-github-colorscheme' " github
 Plugin 'doums/darcula' " darcula
