@@ -282,7 +282,7 @@ augroup END
 let g:vim_ai_chat = {
 \  "options": {
 \    "endpoint_url": "https://api.scaleway.ai/v1/chat/completions",
-\    "model": "qwen2.5-coder-32b-instruct",
+\    "model": "qwen3.5-397b-a17b",
 \    "enable_auth": 1,
 \  },
 \}
